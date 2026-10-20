@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAHARAJA EXPRESS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: white;
+  color: #17191d;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.train-header {
+  background: #17191d;
+  color: white;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 5px solid #ffc400;
+}
+
+.train-logo { font-size: 42px; }
+
+.train-title h1 {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 900;
+}
+
+.train-title h1 span { color: #ffc400; }
+
+.train-title p {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 8px;
+}
+
+.train-tagline {
+  color: #ffc400;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* HEADING */
+.hero-heading {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.small-heading {
+  color: #c18b00;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.hero-heading h2 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 10px 0;
+}
+
+/* BIG VIDEO */
+.video-section {
+  width: 100%;
+  padding: 10px 1% 35px;
+  background: #fff;
+}
+
+.video-section video {
+  display: block;
+  width: 100%;
+  height: 750px;
+  object-fit: cover;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px #0002;
+}
+
+@media (max-width: 700px) {
+  .video-section {
+    padding: 5px 8px 25px;
+  }
+
+  .video-section video {
+    height: 600px;
+    object-fit: cover;
+    background: #fff;
+    border-radius: 8px;
+  }
+}
+
+/* SECTION HEADINGS */
+.section-heading {
+  text-align: center;
+  padding: 30px 15px;
+  background: #f5f6f8;
+}
+
+.section-heading h2 {
+  font-size: 28px;
+}
+
+.section-heading p {
+  margin-top: 8px;
+  color: #555;
+}
+
+/* ROUTE */
+.route-container {
+  max-width: 200px;
+  margin: 10 auto;
+  padding: 10px 10px;
+  position: ;
+}
+
+.route-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-left: 140px;
+  position: relative;
+}
+
+  .route-item {
+    display: flex;
+    align-items: center; /* इससे सर्कल और नाम ऊपर-नीचे से बिल्कुल बीच में आ जाएंगे */
+    gap: 15px; /* सर्कल और स्टेशन के नाम के बीच की दूरी तय करने के लिए */
+}
+
+.route-timeline::before {
+  content: "-";
+  position: absolute;
+  left: 116px;
+  top: 15px;
+  bottom: 15px;
+  border-left: 2px dashed #999;
+}
+
+.station-item {
+  position: relative;
+  z-index: 1;
+}
+
+.station-item::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: 13px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+.station-link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.highlight { background: #ffb703; color: #000; }
+.dark { background: #000; color: #fff; }
+.text-only { background: #eee; color: #111; }
+
+.station-time {
+  margin: 7px 0 0 3px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.station-time strong { color: #111; }
+.unknown { color: #a04b00; }
+
+/* TICKET BOOKING */
+.ticket-section {
+  padding: 35px 5%;
+  background: #f5f6f8;
+  text-align: center;
+}
+
+.ticket-section h2 {
+  font-size: 28px;
+}
+
+.ticket-card {
+  background: white;
+  max-width: 600px;
+  margin: 25px auto 0;
+  padding: 25px;
+  border-radius: 16px;
+  border-top: 6px solid #ffc400;
+  box-shadow: 0 5px 20px #00000012;
+  text-align: left;
+}
+
+.ticket-card label {
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 7px;
+}
+
+.ticket-card select,
+.ticket-card input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd0d8;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+.book-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  background: #ffc400;
+  color: #111;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.book-btn:hover { background: #e5ad00; }
+
+.ticket-note {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* ROUTE INFORMATION */
+.route-info {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+.route-info h2 { font-size: 27px; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.info-card {
+  border: 1px solid #d9dde4;
+  border-top: 5px solid #ffc400;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px #0000000a;
+}
+
+.info-card h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  line-height: 1.7;
+  color: #444;
+  overflow-wrap: anywhere;
+}
+
+.info-card a {
+  color: #765500;
+  font-weight: bold;
+}
+
+/* BACK BUTTON */
+.back-area {
+  text-align: center;
+  padding: 20px 10px 40px;
+}
+
+.back-btn {
+  background: #000;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.back-btn:hover { background: #333; }
+
+/* FOOTER */
+.train-footer {
+  background: #17191d;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 6px solid #ffc400;
+}
+
+.train-footer h3 {
+  color: #ffc400;
+  margin-bottom: 10px;
+}
+
+.train-footer p {
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.train-footer small {
+  display: block;
+  color: #ccc;
+  margin-top: 12px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .train-header {
+    justify-content: flex-start;
+    padding: 16px 12px;
+  }
+
+  .train-logo { font-size: 29px; }
+
+  .train-title p {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .train-tagline { display: none; }
+
+  .video-section { padding: 5px 10px 25px; }
+
+  .video-section video {
+    height: 520px;
+    border-radius: 8px;
+  }
+
+  .info-grid { grid-template-columns: 1fr; }
+
+  .ticket-card { padding: 18px; }
+
+  .station-link { font-size: 14px; }
+  .station-time { font-size: 13px; }
+}
+</style>
+</head>
+
+<body>
+  
+  
+  
+<audio id="bgMusic" autoplay loop>
+  <source src="Bgmi.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.3;
+
+  music.play().catch(() => {
+    document.addEventListener("click", function startMusic() {
+      music.play();
+    }, { once: true });
+  });
+</script>
+
+<!-- HEADER -->
+<header class="train-header">
+  <div class="train-logo">?</div>
+  <div class="train-title">
+    <h1>WayTo <span>Railway</span></h1>
+    <p>INDIAN RAILWAYS</p>
+  </div>
+  <div class="train-tagline">Journey<br>Towards Divine</div>
+</header>
+
+<!-- MAIN HEADING -->
+<section class="hero-heading">
+  <p class="small-heading">WELCOME TO</p>
+  <h2>GIRAKHDHAM EXPRESS</h2>
+  <p>Explore the train route with video</p>
+</section>
+
+<!-- LARGE VIDEO -->
+<section class="video-section">
+  <video autoplay loop muted playsinline >
+    <source src="MapAnim_20261018_095411.mp4" type="video/mp4">
+    Your browser does not support the video.
+  </video>
+</section>
+
+<!-- ROUTE TIMELINE -->
+<section class="section-heading">
+  <h1>TRAIN ROUTE </h1>
+  <p> <font size="2">CLICK ON IT TO EXPLORE MORE</font></p>
+</section><br>
+  <br>
+   <div class="route-timeline">
+          
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/Gorakhpur" class="station-link highlight">GORAKHPUR JN</a><div class="station-time"><strong>Arrival:</strong> 4:05 PM |
+      <strong>Departure:</strong> 4:20 PM</div>
+          </div>
+
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/Basti_district" class="station-link text-only">BASTI</a><div class="station-time"><strong>Arrival:</strong> 5:19 PM |
+      <strong>Departure:</strong> 5:22 PM</div>
+          </div>
+
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/Gonda_Junction_railway_station" class="station-link dark">GONDA JN</a><div class="station-time"><strong>Arrival:</strong> 6:50 PM |
+      <strong>Departure:</strong> 6:55 PM</div>
+          </div>
+
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/Lucknow" class="station-link text-only">LUCKNOW</a><div class="station-time"><strong>Arrival:</strong> 9:20 PM |
+      <strong>Departure:</strong> 9:30 PM</div>
+          </div>
+
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/Kanpur_Central_metro_station" class="station-link dark">KANPUR CENTRAL</a><div class="station-time"><strong>Arrival:</strong> 11:18 PM |
+      <strong>Departure:</strong> 11:23 PM</div>
+          </div>
+
+          <div class="station-item">
+            <a href="https://en.wikipedia.org/wiki/New_Delhi" class="station-link highlight">NEW DELHI</a><div class="station-time"><strong>Arrival:</strong> 5:15 PM | 
+      <strong>Departure:</strong>  (day2)</div>
+          </div>
+        </div>
+</div>
+<br>
+<br>
+
+<!-- TICKET BOOKING -->
+<section class="ticket-section">
+  <h2>🎫 BOOK YOUR TICKET</h2>
+  <p> <font size="2">ENTER YOUR JOURNEY DETAILS BELOW</font> </p>
+
+  <form class="ticket-card" onsubmit="bookTicket(event)">
+    <label for="from">From Station</label>
+    <select id="from" required>
+      
+      <option>GORAKHPUR</option>
+      <option>BASTI </option>
+      <option>GONDA</option>
+      <option>LUCKNOW</option>
+      <option>KANPUR</option>
+      <option>NEW DELHI</option>
+      
+      
+    </select>
+
+    <label for="to">To Station</label>
+    <select id="to" required>
+      
+      <option>GORAKPUR </option>
+      <option>BASTI</option>
+      <option>GONDA</option>
+      <option>LUCKNOW</option>
+      <option>KANPUR</option>
+      <option>NEW DELHI</option>
+     
+     
+    </select>
+
+    <label for="journeyDate">Journey Date</label>
+    <input type="date" id="journeyDate" required>
+
+    <label for="passengers">Passengers</label>
+    <select id="passengers" required>
+      <option value="1">1 Passenger</option>
+      <option value="2">2 Passengers</option>
+      <option value="3">3 Passengers</option>
+      <option value="4">4 Passengers</option>
+      <option value="5">5 Passengers</option>
+      <option value="6">6 Passengers</option>
+    </select>
+
+    <button class="book-btn" type="submit">Continue to IRCTC</button>
+    <p class="ticket-note">
+      Booking is completed only on the official IRCTC website.
+      Confirm the actual train stops before booking.
+    </p>
+  </form>
+</section>
+
+<!-- ROUTE INFORMATION -->
+<section class="route-info">
+  <h2>Route Information</h2>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <h3>🚆 Train Name</h3>
+      <p>GORAKHDHAM EXPRESS</p>
+      <!-- <p>Train number commonly listed as 12587.Maharajas' Express ki "The Indian Splendour" journey Delhi se shuru hokar Agra, Ranthambore, Jaipur, Bikaner, Jodhpur aur Udaipur se hote hue Mumbai mein samapt hoti hai. Yeh duniya ki sabse behtareen luxury trains mein se ek hai, jo yatriyon ko Bharat ki shahi virasat, itihaas aur sanskriti ka anubhav karati hai. Is safar ke dauran mehmaan alag-alag aithihasik kilon, rashtriya udyanon aur sundar shehron ki sair karte hain, jisse ye yatra ek yaadgar anubhav ban jaati hai.</p>
+      -->
+      <p>The Gorakhdham Express (Train Nos. 12555/12556) is a premier daily superfast train operated by the North Eastern Railway zone of Indian Railways, connecting Gorakhpur Junction in Uttar Pradesh to Bathinda Junction in Punjab over a distance of roughly 1,123 kilometers. Named after the revered saint Guru Gorakhnath, this ISO 9001:2015 certified train is renowned for its reliable punctuality, cleanliness, and security, utilizing modern LHB rakes to ensure passenger comfort. Passing through major hubs like Lucknow, Kanpur, and New Delhi, it offers a full suite of travel accommodations ranging from AC First Class and AC Tier classes to Sleeper and General unreserved coaches, making it one of the most vital and heavily patronized long-distance links between eastern Uttar Pradesh and northwest India.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📍 Route</h3>
+
+      
+​ <!--<b>Day 2</b>: Agra — Taj Mahal aur Agra Fort ke aithihasik darshan.<br>
+ <b>Day 3</b>: Ranthambore & Jaipur — Ranthambore National Park mein jungle safari aur Jaipur mein Pink City ki sair (Amber Fort).<br>
+ <b>Day 4</b>: Bikaner — Junagarh Fort aur regular sand dunes par anokha anubhav.<br>
+ <b>Day 5</b>: Jodhpur — Mehrangarh Fort aur Mandore Garden ki sair.<br>
+ <b>Day 6</b>: Udaipur — City Palace aur Lake Pichola ki boat ride.<br>
+ <b>Day 7</b>: Mumbai — CSMT (Chhatrapati Shivaji Maharaj Terminus) par yatra ka aant. </p>
+   -->
+        <p> The travel corridor between Gorakhpur Junction (GKP) and New Delhi / Anand Vihar is one of the busiest and most vital rail links connecting Eastern Uttar Pradesh to the National Capital Region, spanning a distance of roughly 785 kilometers via major hubs like Basti, Gonda, Lucknow Charbagh, and Kanpur Central.
+​Among the various train options available, the Gorakhdham Superfast Express (12555) is a prominent daily choice, departing Gorakhpur at 4:20 PM and arriving at New Delhi Railway Station at 5:15 AM the next morning, taking approximately 13 hours with comfortable LHB coaches across AC and Sleeper classes.
+​For travelers looking for faster or alternative transit, the Gorakhpur Vande Bharat Express (22549) offers a much quicker daytime journey of just about 8 hours and 20 minutes, operating every day except Sunday and arriving at Anand Vihar Terminal in the afternoon.</p>
+        
+      </div>
+
+    <div class="info-card">
+      <h3>🎫 Official Booking</h3>
+      <p>Check availability, train stops and fares on IRCTC.</p>
+      <p><a href="https://www.irctc.co.in/nget/train-search"
+      target="_blank" rel="noopener">Open IRCTC Train Search</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- BACK BUTTON -->
+<div class="back-area">
+  <button type="button" class="back-btn"
+    onclick="window.location.href='vi.html'">
+    BACK
+  </button>
+</div><br>
+
+<center><b><h3>SOME PICTURES<h3></b></center> <br>
+
+<img src="Gorakhdham1.jpg" width="970" ><hr>
+
+<img src="Gorakhdham2.jpg" width="970"><hr>
+
+
+
+
+
+<!-- FOOTER -->
+<footer class="train-footer">
+  <h3>GORAKHDHAM EXPRESS</h3>
+  <p>INDIAN RAILWAYS</p>
+  <small>
+    Timings may change. Verify the current schedule before travelling.
+  </small>
+</footer>
+
+<script>
+function bookTicket(event) {
+  event.preventDefault();
+
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+
+  if (from === to) {
+    alert("From aur To station alag select karein.");
+    return;
+  }
+
+  alert(
+    "Ab official IRCTC website par train aur availability check karein. " +
+    "Aapki selected details automatically submit nahi hongi."
+  );
+
+  window.open(
+    "https://www.irctc.co.in/nget/train-search",
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>

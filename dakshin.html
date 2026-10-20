@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAKSHIN EXPRESS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: white;
+  color: #17191d;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
+.train-header {
+  background: #17191d;
+  color: white;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 5px solid #ffc400;
+}
+
+.train-logo {
+  font-size: 42px;
+}
+
+.train-title h1 {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 900;
+}
+
+.train-title h1 span {
+  color: #ffc400;
+}
+
+.train-title p {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 8px;
+}
+
+.train-tagline {
+  color: #ffc400;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* MAIN HEADING */
+.hero-heading {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.small-heading {
+  color: #c18b00;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.hero-heading h2 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 10px 0;
+}
+
+/* LARGE VIDEO */
+.video-section {
+  width: 100%;
+  padding: 10px 1% 35px;
+  background: white;
+}
+
+.video-section video {
+  display: block;
+  width: 100%;
+  height: 750px;
+  object-fit: cover;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px #0002;
+}
+
+/* SECTION HEADINGS */
+.section-heading {
+  text-align: center;
+  padding: 30px 15px;
+  background: #f5f6f8;
+}
+
+.section-heading h2 {
+  font-size: 28px;
+}
+
+.section-heading p {
+  margin-top: 8px;
+  color: #555;
+}
+
+/* ROUTE TIMELINE */
+.route-container {
+  width: 100%;
+  padding: 35px 20px;
+}
+
+.route-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 38px;
+  position: relative;
+}
+
+.route-timeline::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 15px;
+  bottom: 15px;
+  border-left: 2px dashed #999;
+}
+
+.station-item {
+  position: relative;
+  z-index: 1;
+}
+
+.station-item::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 13px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+.station-link {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.highlight {
+  background: #ffb703;
+  color: #000;
+}
+
+.dark {
+  background: #000;
+  color: #fff;
+}
+
+.text-only {
+  background: #eee;
+  color: #111;
+}
+
+.station-time {
+  margin: 7px 0 0 3px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.station-time strong {
+  color: #111;
+}
+
+.unknown {
+  color: #a04b00;
+}
+
+/* TICKET BOOKING */
+.ticket-section {
+  padding: 35px 5%;
+  background: #f5f6f8;
+  text-align: center;
+}
+
+.ticket-section h2 {
+  font-size: 28px;
+}
+
+.ticket-card {
+  background: white;
+  max-width: 600px;
+  margin: 25px auto 0;
+  padding: 25px;
+  border-radius: 16px;
+  border-top: 6px solid #ffc400;
+  box-shadow: 0 5px 20px #00000012;
+  text-align: left;
+}
+
+.ticket-card label {
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 7px;
+}
+
+.ticket-card select,
+.ticket-card input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd0d8;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+.book-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  background: #ffc400;
+  color: #111;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background: #e5ad00;
+}
+
+.ticket-note {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* ROUTE INFORMATION */
+.route-info {
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.route-info h2 {
+  font-size: 27px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.info-card {
+  border: 1px solid #d9dde4;
+  border-top: 5px solid #ffc400;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px #0000000a;
+}
+
+.info-card h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  line-height: 1.7;
+  color: #444;
+  overflow-wrap: anywhere;
+  margin-bottom: 10px;
+}
+
+.info-card a {
+  color: #765500;
+  font-weight: bold;
+}
+
+/* PICTURES */
+.pictures-section {
+  padding: 25px 2%;
+  text-align: center;
+}
+
+.pictures-section h2 {
+  margin-bottom: 20px;
+}
+
+.pictures-section img {
+  display: block;
+  width: 970px;
+  max-width: 100%;
+  height: auto;
+  margin: 15px auto;
+  border-radius: 10px;
+}
+
+.pictures-section hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* BACK BUTTON */
+.back-area {
+  text-align: center;
+  padding: 20px 10px 40px;
+}
+
+.back-btn {
+  display: inline-block;
+  background: #000;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #333;
+}
+
+/* FOOTER */
+.train-footer {
+  background: #17191d;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 6px solid #ffc400;
+}
+
+.train-footer h3 {
+  color: #ffc400;
+  margin-bottom: 10px;
+}
+
+.train-footer p {
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.train-footer small {
+  display: block;
+  color: #ccc;
+  margin-top: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .train-header {
+    justify-content: flex-start;
+    padding: 16px 12px;
+  }
+
+  .train-logo {
+    font-size: 29px;
+  }
+
+  .train-title p {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .train-tagline {
+    display: none;
+  }
+
+  .video-section {
+    padding: 5px 8px 25px;
+  }
+
+  .video-section video {
+    height: 520px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-card {
+    padding: 18px;
+  }
+
+  .station-link {
+    font-size: 14px;
+  }
+
+  .station-time {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" autoplay loop>
+  <source src="Bgmi.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.3;
+
+music.play().catch(() => {
+  document.addEventListener("click", function startMusic() {
+    music.play();
+  }, { once: true });
+});
+</script>
+
+<!-- HEADER -->
+<header class="train-header">
+  <div class="train-logo">🚆</div>
+
+  <div class="train-title">
+    <h1>WayTo <span>Railway</span></h1>
+    <p>INDIAN RAILWAYS</p>
+  </div>
+
+  <div class="train-tagline">
+    Journey<br>Towards Excellence
+  </div>
+</header>
+
+<!-- MAIN HEADING -->
+<section class="hero-heading">
+  <p class="small-heading">WELCOME TO</p>
+  <h2>DAKSHIN EXPRESS</h2>
+  <p>Explore the train route with video</p>
+</section>
+
+<!-- LARGE VIDEO -->
+<section class="video-section">
+  <video autoplay loop muted playsinline >
+    <source src="MapAnim_20261018_100452.mp4"
+            type="video/mp4">
+    Your browser does not support the video.
+  </video>
+</section>
+
+
+<!-- ROUTE TIMELINE -->
+<section class="section-heading">
+  <h2>TRAIN ROUTE</h2>
+  <p>CLICK ON A STATION TO EXPLORE MORE</p>
+</section>
+
+<section class="route-container">
+  <div class="route-timeline">
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Hazrat_Nizamuddin_railway_station"
+         class="station-link highlight" target="_blank">
+        H. NIZAMUDDIN
+      </a>
+      <div class="station-time">
+        <strong>Departure:</strong> 10:50 PM (Day 1)
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Mathura_Junction_railway_station"
+         class="station-link text-only" target="_blank">
+        MATHURA JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 12:30 AM (Day 2)<br>
+        <strong>Departure:</strong> 12:35 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Agra_Cantonment_railway_station"
+         class="station-link dark" target="_blank">
+        AGRA CANTT
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 1:10 AM (Day 2)<br>
+        <strong>Departure:</strong> 1:15 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Gwalior_Junction_railway_station"
+         class="station-link text-only" target="_blank">
+        GWALIOR JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 3:20 AM (Day 2)<br>
+        <strong>Departure:</strong> 3:22 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Jhansi_Junction_railway_station"
+         class="station-link dark" target="_blank">
+        VGL JHANSI
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 5:02 AM (Day 2)<br>
+        <strong>Departure:</strong> 5:10 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Bina_Junction_railway_station"
+         class="station-link text-only" target="_blank">
+        BINA JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 7:25 AM (Day 2)<br>
+        <strong>Departure:</strong> 7:30 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Bhopal_Junction_railway_station"
+         class="station-link highlight" target="_blank">
+        BHOPAL JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 9:35 AM (Day 2)<br>
+        <strong>Departure:</strong> 9:40 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Itarsi_Junction_railway_station"
+         class="station-link text-only" target="_blank">
+        ITARSI JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 11:50 AM (Day 2)<br>
+        <strong>Departure:</strong> 12:00 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Nagpur_Junction_railway_station"
+         class="station-link dark" target="_blank">
+        NAGPUR
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 5:05 PM (Day 2)<br>
+        <strong>Departure:</strong> 5:10 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Balharshah_railway_station"
+         class="station-link text-only" target="_blank">
+        BALHARSHAH
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 8:55 PM (Day 2)<br>
+        <strong>Departure:</strong> 9:00 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Kazipet_Junction_railway_station"
+         class="station-link dark" target="_blank">
+        KAZIPET JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 12:18 AM (Day 3)<br>
+        <strong>Departure:</strong> 12:20 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Secunderabad_Junction_railway_station"
+         class="station-link text-only" target="_blank">
+        SECUNDERABAD JN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 2:50 AM (Day 3)<br>
+        <strong>Departure:</strong> 2:55 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Hyderabad_Deccan_railway_station"
+         class="station-link highlight" target="_blank">
+        HYDERABAD DECCAN
+      </a>
+      <div class="station-time">
+        <strong>Arrival:</strong> 3:50 AM (Day 3)<br>
+        <strong>Destination:</strong> Final Station
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- TICKET BOOKING -->
+<section class="ticket-section">
+  <h2>🎫 BOOK YOUR TICKET</h2>
+  <p>ENTER YOUR JOURNEY DETAILS BELOW</p>
+
+  <form class="ticket-card" onsubmit="bookTicket(event)">
+
+    <label for="from">From Station</label>
+    <select id="from" required>
+      <option value="NZM">H. Nizamuddin</option>
+      <option value="MTJ">Mathura Junction</option>
+      <option value="AGC">Agra Cantt</option>
+      <option value="GWL">Gwalior Junction</option>
+      <option value="VGLJ">Virangana Lakshmibai Jhansi</option>
+      <option value="BINA">Bina Junction</option>
+      <option value="BPL">Bhopal Junction</option>
+      <option value="ET">Itarsi Junction</option>
+      <option value="NGP">Nagpur</option>
+      <option value="BPQ">Balharshah</option>
+      <option value="KZJ">Kazipet Junction</option>
+      <option value="SC">Secunderabad Junction</option>
+      <option value="HYB">Hyderabad Deccan</option>
+    </select>
+
+    <label for="to">To Station</label>
+    <select id="to" required>
+      <option value="HYB">Hyderabad Deccan</option>
+      <option value="SC">Secunderabad Junction</option>
+      <option value="KZJ">Kazipet Junction</option>
+      <option value="BPQ">Balharshah</option>
+      <option value="NGP">Nagpur</option>
+      <option value="ET">Itarsi Junction</option>
+      <option value="BPL">Bhopal Junction</option>
+      <option value="BINA">Bina Junction</option>
+      <option value="VGLJ">Virangana Lakshmibai Jhansi</option>
+      <option value="GWL">Gwalior Junction</option>
+      <option value="AGC">Agra Cantt</option>
+      <option value="MTJ">Mathura Junction</option>
+      <option value="NZM">H. Nizamuddin</option>
+    </select>
+
+    <label for="journeyDate">Journey Date</label>
+    <input type="date" id="journeyDate" required>
+
+    <label for="passengers">Passengers</label>
+    <select id="passengers" required>
+      <option value="1">1 Passenger</option>
+      <option value="2">2 Passengers</option>
+      <option value="3">3 Passengers</option>
+      <option value="4">4 Passengers</option>
+      <option value="5">5 Passengers</option>
+      <option value="6">6 Passengers</option>
+    </select>
+
+    <button class="book-btn" type="submit">
+      Continue to IRCTC
+    </button>
+
+    <p class="ticket-note">
+      Confirm actual stops, timings and availability on IRCTC.
+      This form does not make a booking.
+    </p>
+  </form>
+</section>
+
+<!-- ROUTE INFORMATION -->
+<section class="route-info">
+  <h2>Route Information</h2>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <h3>🚆 Train Name</h3>
+      <p><strong>DAKSHIN EXPRESS</strong></p>
+      <p>Train Numbers: 12721 / 12722</p>
+      <p>Connects the Delhi region with Hyderabad via
+      important stations in central and southern India.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📍 Route</h3>
+      <p>
+        H. Nizamuddin → Mathura → Agra → Gwalior →
+        Jhansi → Bina → Bhopal → Itarsi → Nagpur →
+        Balharshah → Kazipet → Secunderabad →
+        Hyderabad Deccan.
+      </p>
+      <p>Station halts and timings should be checked against
+      the current railway timetable.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>🎫 Official Booking</h3>
+      <p>Check availability, fares and the latest schedule
+      on the official IRCTC website.</p>
+      <p>
+        <a href="https://www.irctc.co.in/nget/train-search"
+           target="_blank" rel="noopener">
+          Open IRCTC Train Search ↗
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- BACK BUTTON -->
+<div class="back-area">
+  <button type="button" class="back-btn"
+    onclick="window.location.href='vi.html'">
+    ← BACK
+  </button>
+</div>
+
+<!-- PICTURES -->
+<section class="pictures-section">
+  <h2>SOME PICTURES</h2>
+
+  <img src="Dakshin.jpeg" alt="Dakshin Express picture"
+      >
+
+  <hr>
+
+  
+</section>
+
+<!-- FOOTER -->
+<footer class="train-footer">
+  <h3>DAKSHIN EXPRESS</h3>
+  <p>INDIAN RAILWAYS</p>
+  <small>
+    Timings may change. Verify the current schedule before travelling.
+  </small>
+</footer>
+
+<script>
+function bookTicket(event) {
+  event.preventDefault();
+
+  const from = document.getElementById("from");
+  const to = document.getElementById("to");
+  const date = document.getElementById("journeyDate").value;
+
+  if (from.value === to.value) {
+    alert("From aur To station alag select karein.");
+    return;
+  }
+
+  if (from.selectedIndex >= to.selectedIndex) {
+    alert("Is route ke liye From station, To station se pehle hona chahiye.");
+    return;
+  }
+
+  if (!date) {
+    alert("Journey date select karein.");
+    return;
+  }
+
+  alert(
+    "Ab IRCTC par train number, date aur availability check karein. " +
+    "Aapki selected details automatically transfer nahi hongi."
+  );
+
+  window.open(
+    "https://www.irctc.co.in/nget/train-search",
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>

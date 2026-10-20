@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Howrah - New Delhi Rajdhani Express</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: white;
+    color: #222;
+}
+
+header {
+    background: #17181c;
+    color: white;
+    padding: 15px 5%;
+    border-bottom: 4px solid #ffca05;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 25px;
+}
+
+.brand {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.brand span {
+    color: #ffca05;
+}
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+.tagline {
+    color: #ffca05;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.welcome {
+    text-align: center;
+    padding: 22px 10px 25px;
+}
+
+.welcome small {
+    color: #b18d19;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.welcome h1 {
+    font-size: 27px;
+    margin: 5px 0;
+}
+
+.welcome p {
+    font-size: 12px;
+    color: #555;
+}
+
+/* LARGE MAP OR VIDEO */
+.map-section {
+    width: 96%;
+    max-width: 1400px;
+    margin: 0 auto 25px;
+}
+
+.map-box {
+    width: 100%;
+    height: 530px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 18px #00000012;
+}
+
+.map-box video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* SECTION HEADING */
+.section-heading {
+    text-align: center;
+    background: #f4f5f7;
+    padding: 20px 10px;
+    margin-top: 25px;
+}
+
+.section-heading h2 {
+    font-size: 20px;
+}
+
+.section-heading p {
+    font-size: 11px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* ROUTE TIMELINE */
+.route-section {
+    padding: 30px 0 35px;
+}
+
+.timeline {
+    width: 90%;
+    max-width: 650px;
+    margin: auto;
+    padding-left: 25px;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 20px;
+    left: 7px;
+    border-left: 2px dashed #aaa;
+}
+
+.station {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.station::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: -24px;
+    top: 8px;
+    background: white;
+    border: 3px solid #444;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.station-name {
+    display: inline-block;
+    background: #eee;
+    color: #111;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 11px;
+    border-radius: 7px;
+}
+
+.station:nth-child(odd) .station-name {
+    background: #ffca05;
+}
+
+.station:nth-child(3n) .station-name {
+    background: #000;
+    color: #fff;
+}
+
+.station p {
+    font-size: 10px;
+    color: #555;
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+.station .unverified {
+    color: #8a6d3b;
+}
+
+/* BOOKING FORM */
+.booking-section {
+    background: #f4f5f7;
+    padding: 28px 15px;
+}
+
+.booking-heading {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.booking-heading h2 {
+    font-size: 20px;
+}
+
+.booking-heading p {
+    font-size: 12px;
+}
+
+.booking-form {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 13px;
+    background: white;
+    border-top: 4px solid #ffca05;
+    box-shadow: 0 5px 20px #0000000d;
+}
+
+.field {
+    margin-bottom: 13px;
+}
+
+.field label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.field select,
+.field input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    background: white;
+    font-size: 12px;
+}
+
+.continue-btn {
+    width: 100%;
+    border: none;
+    border-radius: 7px;
+    padding: 13px;
+    background: #ffca05;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.booking-note {
+    font-size: 9px;
+    color: #777;
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* INFORMATION CARDS */
+.info-section {
+    padding: 25px 5%;
+}
+
+.info-section h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.info-card {
+    padding: 17px;
+    border: 1px solid #eee;
+    border-top: 4px solid #ffca05;
+    border-radius: 9px;
+    box-shadow: 0 3px 10px #00000008;
+}
+
+.info-card h3 {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.info-card a {
+    color: #766015;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* BACK BUTTON */
+.back-area {
+    text-align: center;
+    padding: 12px 10px 28px;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #000;
+    color: white;
+    border-radius: 9px;
+    padding: 10px 23px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ROUTE IMAGES */
+.route-image {
+    display: block;
+    width: 970px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 15px;
+}
+
+/* FOOTER */
+footer {
+    background: #17181c;
+    color: white;
+    border-top: 4px solid #ffca05;
+    text-align: center;
+    padding: 20px 12px;
+}
+
+footer h3 {
+    font-size: 13px;
+    color: #ffca05;
+}
+
+footer small {
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+footer p {
+    font-size: 10px;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    header {
+        padding: 12px 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .brand {
+        font-size: 17px;
+    }
+
+   .station-name a {
+    color: inherit;
+    text-decoration: none;
+} 
+    
+    
+    .tagline {
+        font-size: 9px;
+    }
+
+    .welcome h1 {
+        font-size: 24px;
+    }
+
+    .map-section {
+        width: 96%;
+    }
+
+    .map-box {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-section {
+        padding: 25px 5%;
+    }
+
+    .timeline {
+        width: 88%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" autoplay loop>
+    <source src="Bgmi.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.3;
+
+music.play().catch(() => {
+    document.addEventListener("click", function startMusic() {
+        music.play();
+    }, { once: true });
+});
+</script>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">?</div>
+
+    <div class="brand">
+        WayTo <span>Railway</span>
+        <small>INDIAN RAILWAYS</small>
+    </div>
+
+    <div class="tagline">
+        Journey<br>Across India
+    </div>
+</header>
+
+<!-- WELCOME -->
+<section class="welcome">
+    <small>WELCOME TO</small>
+    <h1>HOWRAH RAJDHANI EXPRESS</h1>
+    <p>Explore the train route and station timings</p>
+</section>
+
+<!-- MAP / VIDEO -->
+<section class="map-section">
+    <div class="map-box">
+        <video autoplay loop muted playsinline
+               src="MapAnim_20261018_221330.mp4">
+            Your browser does not support video.
+        </video>
+    </div>
+</section>
+
+<!-- ROUTE HEADING -->
+<section class="section-heading">
+    <h2>🚆 Train Route &amp; Timings</h2>
+    <p>Scheduled timings (IST) — check the current timetable before travel</p>
+</section>
+
+
+<!-- STATIONS -->
+<section class="route-section">
+    <div class="timeline">
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Howrah_Junction_railway_station"
+                   target="_blank" rel="noopener">HOWRAH JUNCTION</a>
+            </div>
+            <p>Departure: 4:50 PM · Day 1</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Asansol_Junction_railway_station"
+                   target="_blank" rel="noopener">ASANSOL JUNCTION</a>
+            </div>
+            <p>Arrival: 6:47 PM · Departure: 6:49 PM · Day 1</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Dhanbad_Junction_railway_station"
+                   target="_blank" rel="noopener">DHANBAD JUNCTION</a>
+            </div>
+            <p>Arrival: 7:55 PM · Departure: 8:00 PM · Day 1</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Parasnath_railway_station"
+                   target="_blank" rel="noopener">PARASNATH</a>
+            </div>
+            <p>Arrival: 8:30 PM · Departure: 8:32 PM · Day 1</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Gaya_Junction_railway_station"
+                   target="_blank" rel="noopener">GAYA JUNCTION</a>
+            </div>
+            <p>Arrival: 10:32 PM · Departure: 10:35 PM · Day 1</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Pt._Deen_Dayal_Upadhyaya_Junction_railway_station"
+                   target="_blank" rel="noopener">PT. DEEN DAYAL UPADHYAYA JN</a>
+            </div>
+            <p>Arrival: 12:43 AM · Departure: 12:50 AM · Day 2</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Prayagraj_Junction_railway_station"
+                   target="_blank" rel="noopener">PRAYAGRAJ JUNCTION</a>
+            </div>
+            <p>Arrival: 2:40 AM · Departure: 2:42 AM · Day 2</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/Kanpur_Central"
+                   target="_blank" rel="noopener">KANPUR CENTRAL</a>
+            </div>
+            <p>Arrival: 4:45 AM · Departure: 4:50 AM · Day 2</p>
+        </div>
+
+        <div class="station">
+            <div class="station-name">
+                <a href="https://en.wikipedia.org/wiki/New_Delhi_railway_station"
+                   target="_blank" rel="noopener">NEW DELHI</a>
+            </div>
+            <p>Arrival: 10:05 AM · Day 2</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- BOOK TICKET -->
+<section class="booking-section">
+    <div class="booking-heading">
+        <h2>🎫 Book Your Ticket</h2>
+        <p>Enter your journey details below</p>
+    </div>
+
+    <form class="booking-form"
+          onsubmit="openIRCTC(event)">
+
+        <div class="field">
+            <label for="from">From Station</label>
+            <select id="from" required>
+                <option value="">Select departure station</option>
+                <option>Howrah Junction</option>
+                <option>Asansol Junction</option>
+                <option>Dhanbad Junction</option>
+                <option>Parasnath</option>
+                <option>Gaya Junction</option>
+                <option>Pt. Deen Dayal Upadhyaya Jn</option>
+                <option>Prayagraj Junction</option>
+                <option>Kanpur Central</option>
+                <option>New Delhi</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="to">To Station</label>
+            <select id="to" required>
+                <option value="">Select destination station</option>
+                <option>Howrah Junction</option>
+                <option>Asansol Junction</option>
+                <option>Dhanbad Junction</option>
+                <option>Parasnath</option>
+                <option>Gaya Junction</option>
+                <option>Pt. Deen Dayal Upadhyaya Jn</option>
+                <option>Prayagraj Junction</option>
+                <option>Kanpur Central</option>
+                <option>New Delhi</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="date">Journey Date</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="field">
+            <label for="passengers">Passengers</label>
+            <select id="passengers">
+                <option>1 Passenger</option>
+                <option>2 Passengers</option>
+                <option>3 Passengers</option>
+                <option>4 Passengers</option>
+                <option>5 Passengers</option>
+                <option>6 Passengers</option>
+            </select>
+        </div>
+
+        <button class="continue-btn" type="submit">
+            Continue to IRCTC
+        </button>
+
+        <p class="booking-note">
+            This button opens the official IRCTC website.
+            Your selected details are not automatically transferred.
+            Enter your journey details again on IRCTC.
+        </p>
+    </form>
+</section>
+
+<script>
+function openIRCTC(event) {
+    event.preventDefault();
+
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+
+    if (from === to) {
+        alert("Please select different departure and destination stations.");
+        return;
+    }
+
+    window.open("https://www.irctc.co.in/", "_blank");
+}
+</script>
+
+<!-- ROUTE INFORMATION -->
+<section class="info-section">
+    <h2>Route Information</h2>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>🚆 Train Name</h3>
+            <p>
+                Howrah - New Delhi Rajdhani Express.
+                Train number: 12301.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <h3>📍 Route</h3>
+            <p>
+                Howrah to New Delhi via Asansol, Dhanbad,
+                Parasnath, Gaya, Pt. Deen Dayal Upadhyaya,
+                Prayagraj and Kanpur.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <h3>🎫 Official Booking</h3>
+            <p>
+                Check availability, train stops and fares on IRCTC.
+                <br>
+                <a href="https://www.irctc.co.in/"
+                   target="_blank" rel="noopener">
+                    Open IRCTC Train Search
+                </a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- BACK BUTTON -->
+<div class="back-area">
+    <a href="vi.html" class="back-btn">BACK</a>
+</div>
+
+<!-- ROUTE IMAGES -->
+<img src="Rajdhani1.jpg"
+     class="route-image"
+     alt="Rajdhani Express">
+
+<img src="Rajdhani2.jpg"
+     class="route-image"
+     alt="Rajdhani Express route">
+
+<!-- FOOTER -->
+<footer>
+    <h3>HOWRAH RAJDHANI EXPRESS</h3>
+    <small>INDIAN RAILWAYS</small>
+    <p>Timings may change. Verify the current schedule before travelling.</p>
+</footer>
+
+</body>
+</html>

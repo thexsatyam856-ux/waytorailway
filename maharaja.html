@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAHARAJAS' EXPRESS | WayTo Railway</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: white;
+  color: #17191d;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.train-header {
+  background: #17191d;
+  color: white;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 5px solid #ffc400;
+}
+
+.train-logo {
+  font-size: 42px;
+}
+
+.train-title h1 {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 900;
+}
+
+.train-title h1 span {
+  color: #ffc400;
+}
+
+.train-title p {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 8px;
+}
+
+.train-tagline {
+  color: #ffc400;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* MAIN HEADING */
+.hero-heading {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.small-heading {
+  color: #c18b00;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.hero-heading h2 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 10px 0;
+}
+
+/* VIDEO */
+.video-section {
+  width: 100%;
+  padding: 10px 1% 35px;
+  background: white;
+}
+
+.video-section video {
+  display: block;
+  width: 100%;
+  height: 750px;
+  object-fit: cover;
+  background: #17191d;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px #0002;
+}
+
+/* SECTION HEADINGS */
+.section-heading {
+  text-align: center;
+  padding: 30px 15px;
+  background: #f5f6f8;
+}
+
+.section-heading h2,
+.section-heading h1 {
+  font-size: 28px;
+}
+
+.section-heading p {
+  margin-top: 8px;
+  color: #555;
+  font-size: 12px;
+}
+
+/* ROUTE TIMELINE */
+.route-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 20px 30px;
+}
+
+.route-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-left: 45px;
+  position: relative;
+}
+
+.route-timeline::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 15px;
+  bottom: 15px;
+  border-left: 2px dashed #999;
+}
+
+.station-item {
+  position: relative;
+  z-index: 1;
+}
+
+.station-item::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 12px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+.station-link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.highlight {
+  background: #ffb703;
+  color: #000;
+}
+
+.dark {
+  background: #000;
+  color: #fff;
+}
+
+.text-only {
+  background: #eee;
+  color: #111;
+}
+
+.station-time {
+  margin: 7px 0 0 3px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.station-time strong {
+  color: #111;
+}
+
+.day-label {
+  display: inline-block;
+  margin-top: 5px;
+  color: #765500;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* TICKET / TOUR BOOKING */
+.ticket-section {
+  padding: 35px 5%;
+  background: #f5f6f8;
+  text-align: center;
+}
+
+.ticket-section h2 {
+  font-size: 28px;
+}
+
+.ticket-card {
+  background: white;
+  max-width: 600px;
+  margin: 25px auto 0;
+  padding: 25px;
+  border-radius: 16px;
+  border-top: 6px solid #ffc400;
+  box-shadow: 0 5px 20px #00000012;
+  text-align: left;
+}
+
+.ticket-card label {
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 7px;
+}
+
+.ticket-card select,
+.ticket-card input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd0d8;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+.book-btn {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  background: #ffc400;
+  color: #111;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background: #e5ad00;
+}
+
+.ticket-note {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+/* ROUTE INFORMATION */
+.route-info {
+  padding: 65px 5%;
+  text-align: center;
+}
+
+.route-info h2 {
+  font-size: 27px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.info-card {
+  border: 1px solid #d9dde4;
+  border-top: 5px solid #ffc400;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 4px 12px #0000000a;
+  overflow-wrap: anywhere;
+}
+
+.info-card h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.info-card p {
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.info-card a {
+  color: #765500;
+  font-weight: bold;
+}
+
+/* PICTURES */
+.pictures-section {
+  padding: 30px 5%;
+  text-align: center;
+}
+
+.pictures-section h2 {
+  margin-bottom: 20px;
+}
+
+.picture-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.picture-gallery img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* BACK BUTTON */
+.back-area {
+  text-align: center;
+  padding: 20px 10px 40px;
+}
+
+.back-btn {
+  display: inline-block;
+  background: #000;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #333;
+}
+
+/* FOOTER */
+.train-footer {
+  background: #17191d;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 6px solid #ffc400;
+}
+
+.train-footer h3 {
+  color: #ffc400;
+  margin-bottom: 10px;
+}
+
+.train-footer p {
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.train-footer small {
+  display: block;
+  color: #ccc;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .train-header {
+    justify-content: flex-start;
+    padding: 16px 12px;
+  }
+
+  .train-logo {
+    font-size: 29px;
+  }
+
+  .train-title p {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .train-tagline {
+    display: none;
+  }
+
+  .video-section {
+    padding: 5px 8px 25px;
+  }
+
+  .video-section video {
+    height: 520px;
+    border-radius: 8px;
+  }
+
+  .route-container {
+    padding: 20px 22px;
+  }
+
+  .route-timeline {
+    padding-left: 38px;
+    gap: 25px;
+  }
+
+  .route-timeline::before {
+    left: 13px;
+  }
+
+  .station-item::before {
+    left: -31px;
+  }
+
+  .station-link {
+    font-size: 14px;
+  }
+
+  .station-time {
+    font-size: 13px;
+  }
+
+  .info-grid,
+  .picture-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .picture-gallery img {
+    height: auto;
+    max-height: 350px;
+  }
+
+  .ticket-card {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" autoplay loop>
+  <source src="Bgmi.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.3;
+
+music.play().catch(() => {
+  document.addEventListener("click", function startMusic() {
+    music.play().catch(() => {});
+  }, { once: true });
+});
+</script>
+
+<!-- HEADER -->
+<header class="train-header">
+  <div class="train-logo">🚆</div>
+
+  <div class="train-title">
+    <h1>WayTo <span>Railway</span></h1>
+    <p>INDIAN RAILWAYS</p>
+  </div>
+
+  <div class="train-tagline">
+    Journey<br>Towards Divine
+  </div>
+</header>
+
+<!-- MAIN HEADING -->
+<section class="hero-heading">
+  <p class="small-heading">WELCOME TO</p>
+  <h2>MAHARAJAS' EXPRESS</h2>
+  <p>The Indian Splendour | Delhi to Mumbai</p>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <video autoplay loop muted playsinline>
+    <source src="MapAnim_20261018_225007.mp4" type="video/mp4">
+    Your browser does not support this video.
+  </video>
+</section>
+
+<!-- ROUTE TIMELINE -->
+<section class="section-heading">
+  <h1>TRAIN ROUTE</h1>
+  <p>CLICK ON A STATION TO EXPLORE MORE</p>
+</section>
+
+<div class="route-container">
+  <div class="route-timeline">
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Delhi"
+         class="station-link highlight">DELHI</a>
+      <div class="station-time">
+        <strong>Day 1</strong><br>
+        Check-in: 6:00 AM |
+        <strong>Departure:</strong> 7:00 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Agra"
+         class="station-link text-only">AGRA</a>
+      <div class="station-time">
+        <strong>Day 1 Arrival:</strong> 10:50 AM<br>
+        <strong>Day 2 Departure:</strong> 8:45 AM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Ranthambore_National_Park"
+         class="station-link dark">RANTHAMBORE</a>
+      <div class="station-time">
+        <strong>Day 2 Safari:</strong> 2:30 PM<br>
+        <strong>Train Departure:</strong> 6:00 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Jaipur"
+         class="station-link text-only">JAIPUR</a>
+      <div class="station-time">
+        <strong>Day 2 Arrival:</strong> 11:20 PM<br>
+        <strong>Day 3 Departure:</strong> 11:00 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Bikaner"
+         class="station-link dark">BIKANER</a>
+      <div class="station-time">
+        <strong>Day 4 Arrival:</strong> 6:45 AM<br>
+        <strong>Departure:</strong> 9:30 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Jodhpur"
+         class="station-link text-only">JODHPUR</a>
+      <div class="station-time">
+        <strong>Day 5 Arrival:</strong> 3:30 AM<br>
+        <strong>Departure:</strong> 9:00 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Udaipur"
+         class="station-link highlight">UDAIPUR</a>
+      <div class="station-time">
+        <strong>Day 6 Arrival:</strong> 10:00 AM<br>
+        <strong>Departure:</strong> 11:15 PM
+      </div>
+    </div>
+
+    <div class="station-item">
+      <a href="https://en.wikipedia.org/wiki/Mumbai"
+         class="station-link highlight">MUMBAI</a>
+      <div class="station-time">
+        <strong>Day 7 Arrival:</strong> 4:35 PM<br>
+        <strong>Journey ends</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- TOUR BOOKING -->
+<section class="ticket-section">
+  <h2>🎫 BOOK YOUR JOURNEY</h2>
+  <p>SELECT YOUR JOURNEY DETAILS BELOW</p>
+
+  <form class="ticket-card" onsubmit="bookTicket(event)">
+
+    <label for="from">From Station</label>
+    <select id="from" required>
+      <option value="Delhi">DELHI</option>
+      <option value="Agra">AGRA</option>
+      <option value="Ranthambore">RANTHAMBORE</option>
+      <option value="Jaipur">JAIPUR</option>
+      <option value="Bikaner">BIKANER</option>
+      <option value="Jodhpur">JODHPUR</option>
+      <option value="Udaipur">UDAIPUR</option>
+      <option value="Mumbai">MUMBAI</option>
+    </select>
+
+    <label for="to">To Station</label>
+    <select id="to" required>
+      <option value="Delhi">DELHI</option>
+      <option value="Agra">AGRA</option>
+      <option value="Ranthambore">RANTHAMBORE</option>
+      <option value="Jaipur">JAIPUR</option>
+      <option value="Bikaner">BIKANER</option>
+      <option value="Jodhpur">JODHPUR</option>
+      <option value="Udaipur">UDAIPUR</option>
+      <option value="Mumbai" selected>MUMBAI</option>
+    </select>
+
+    <label for="journeyDate">Journey Date</label>
+    <input type="date" id="journeyDate" required>
+
+    <label for="passengers">Passengers</label>
+    <select id="passengers" required>
+      <option value="1">1 Passenger</option>
+      <option value="2">2 Passengers</option>
+      <option value="3">3 Passengers</option>
+      <option value="4">4 Passengers</option>
+      <option value="5">5 Passengers</option>
+      <option value="6">6 Passengers</option>
+    </select>
+
+    <button class="book-btn" type="submit">
+      CONTINUE
+    </button>
+
+    <p class="ticket-note">
+      Note: Maharajas' Express is a package-based luxury tour.
+      Station selection on this page is for display only.
+      Confirm the available journey and departure date with
+      the official tour operator.
+    </p>
+
+  </form>
+</section>
+
+<script>
+function bookTicket(event) {
+  event.preventDefault();
+
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const date = document.getElementById("journeyDate").value;
+  const passengers = document.getElementById("passengers").value;
+
+  if (from === to) {
+    alert("Please select different From and To stations.");
+    return;
+  }
+
+  alert(
+    "Your selected details:\\n" +
+    "From: " + from + "\\n" +
+    "To: " + to + "\\n" +
+    "Date: " + date + "\\n" +
+    "Passengers: " + passengers +
+    "\\n\\nThese details are not a confirmed booking."
+  );
+
+  window.open(
+    "https://www.maharajaexpress.com/the-indian-splendour/",
+    "_blank"
+  );
+}
+</script>
+
+<!-- ROUTE INFORMATION -->
+<section class="route-info">
+  <h2>ROUTE INFORMATION</h2>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <h3>🚆 Train Name</h3>
+      <p><strong>MAHARAJAS' EXPRESS</strong></p>
+      <p><strong>Journey:</strong> The Indian Splendour</p>
+      <p><strong>Duration:</strong> 6 Nights / 7 Days</p>
+      <p>
+        This luxury train journey connects historic cities, royal
+        palaces, cultural attractions and wildlife experiences.
+        Guests travel from Delhi to Mumbai through Rajasthan and Agra.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>📍 Journey Highlights</h3>
+      <p><strong>Day 1:</strong> Delhi to Agra — Taj Mahal.</p>
+      <p><strong>Day 2:</strong> Agra Fort and Ranthambore safari.</p>
+      <p><strong>Day 3:</strong> Jaipur and Amber Fort.</p>
+      <p><strong>Day 4:</strong> Bikaner, Junagarh Fort and sand dunes.</p>
+      <p><strong>Day 5:</strong> Jodhpur and Mehrangarh Fort.</p>
+      <p><strong>Day 6:</strong> Udaipur, Lake Pichola and City Palace.</p>
+      <p><strong>Day 7:</strong> Arrival in Mumbai.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>🎫 Official Tour Booking</h3>
+      <p>
+        Check the tour itinerary, departure dates, package details
+        and availability on the Maharajas' Express website.
+      </p>
+      <p>
+        <a href="https://www.maharajaexpress.com/the-indian-splendour/"
+           target="_blank" rel="noopener">
+          Explore The Indian Splendour
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- BACK BUTTON -->
+<div class="back-area">
+  <button type="button" class="back-btn"
+    onclick="window.location.href='vi.html'">
+    BACK
+  </button>
+</div>
+
+<!-- PICTURES -->
+<section class="pictures-section">
+  <h2>SOME PICTURES</h2>
+
+  <div class="picture-gallery">
+    <img src="1.jpg" alt="Maharajas Express picture 1">
+    <img src="2.jpg" alt="Maharajas Express picture 2">
+    <img src="3.jpg" alt="Maharajas Express picture 3">
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="train-footer">
+  <h3>MAHARAJAS' EXPRESS</h3>
+  <p>WAYTO RAILWAY</p>
+  <small>
+    This page is for informational purposes.<br>
+    Itinerary and timings may change. Confirm the latest schedule
+    with the tour operator before travelling.
+  </small>
+</footer>
+
+</body>
+</html>
